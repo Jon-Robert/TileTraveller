@@ -1,7 +1,6 @@
 # Assignment 8: TileTraveller
 # jonra20, rutt20, valurg20
-
-# print('You can travel: ')
+# Github: https://github.com/Jon-Robert/TileTraveller
 
 def location(x,y):
     if y == 1:
@@ -62,20 +61,11 @@ while not (xHnit == 3 and yHnit == 1):
         travel = orr(travel)
         travel += "(W)est"
    
-    print("You can Travel:",travel)
-
-    while True:
-        direction = input("Direction:")
-        if direction in check_location:
-            (xHnit,yHnit) = movement(xHnit,yHnit,direction)
-            break
-        else:
-            print("Not a valid direction!")
+    print("You can travel:",travel+'.')
+    direction = input("Direction: ")
+    if direction in check_location:
+        (xHnit,yHnit) = movement(xHnit,yHnit,direction)
+    else:
+        print("Not a valid direction!")
 
 print("Victory!")
-
-
-
-    
-
-
