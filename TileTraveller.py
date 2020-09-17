@@ -23,7 +23,9 @@ def location(x,y):
 
 def orr(direction):
     if len(direction) > 1:
-        return (direction + " or ")
+        return direction + " or "
+    else:
+        return ""
 
 def movement(x,y,direction):
 
@@ -42,34 +44,35 @@ xHnit = 1
 yHnit = 1
 
 
-
-
 while not (xHnit == 3 and yHnit == 1):
     travel = ""
     check_location = location(xHnit,yHnit)
     #do the function stuffs
+    
     if "n" in check_location:
-        orr(travel)
+        travel = orr(travel)
         travel += "(N)orth"
     if "e" in check_location:
-        orr(travel)
+        travel = orr(travel)
         travel += "(E)ast"
     if "s" in check_location:
-        orr(travel)
+        travel = orr(travel)
         travel += "(S)outh"
     if "w" in check_location:
-        orr(travel)
+        travel = orr(travel)
         travel += "(W)est"
    
-    
     print("You can Travel:",travel)
-    direction = input("Direction:")
 
+    while True:
+        direction = input("Direction:")
+        if direction in check_location:
+            (xHnit,yHnit) = movement(xHnit,yHnit,direction)
+            break
+        else:
+            print("Not a valid direction!")
 
-    if direction in check_location:
-        movement(xHnit,yHnit,direction)
-
-
+print("Victory!")
 
 
 
