@@ -21,6 +21,10 @@ def location(x,y):
         elif x == 3:
             return "SsWw"
 
+def orr(direction):
+    if len(direction) > 1:
+        return (direction + " or ")
+
 def movement(x,y,direction):
 
     if direction == "N" or direction == "n":
@@ -32,16 +36,43 @@ def movement(x,y,direction):
     elif direction == "W" or direction == "w":
         x-=1
         
-    return x,y
+    return (x,y)
  
-
-
 xHnit = 1
 yHnit = 1
 
 
-while xHnit != 3 and yHnit != 1:
-    #do the function stuffs
 
+
+while not (xHnit == 3 and yHnit == 1):
+    travel = ""
+    check_location = location(xHnit,yHnit)
+    #do the function stuffs
+    if "n" in check_location:
+        orr(travel)
+        travel += "(N)orth"
+    if "e" in check_location:
+        orr(travel)
+        travel += "(E)ast"
+    if "s" in check_location:
+        orr(travel)
+        travel += "(S)outh"
+    if "w" in check_location:
+        orr(travel)
+        travel += "(W)est"
+   
+    
+    print("You can Travel:",travel)
+    direction = input("Direction:")
+
+
+    if direction in check_location:
+        movement(xHnit,yHnit,direction)
+
+
+
+
+
+    
 
 
