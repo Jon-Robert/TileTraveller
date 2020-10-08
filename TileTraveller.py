@@ -88,7 +88,13 @@ def main():
 
     print("Victory! Total coins {}.".format(coins))
 
-main()
+#Main Program starts here!
+play = "y"   
+while play != "n":      
+    main()
+    play = input("Play again (y/n): ")
+    play.lower()
+
 
 # Bee Movie Script - Dialogue Transcript
 
