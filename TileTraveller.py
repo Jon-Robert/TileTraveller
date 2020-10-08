@@ -2,6 +2,8 @@
 # jonra20, rutt20, valurg20
 # Github: https://github.com/Jon-Robert/TileTraveller
 
+
+
 #Fall sem tékkar á staðsetningu notanda eftir x & y hnitum og skilar mögulegum áttum
 def location(x,y): 
     if y == 1:
@@ -20,6 +22,17 @@ def location(x,y):
             return "EeWw"
         elif x == 3:
             return "SsWw"
+
+def lever(x,y,coins):
+    if y == 2 or (x == 2 and y == 3):
+        pullYesNo = input('Pull a lever (y/n): ')
+        pullYesNo.lower()
+        if pullYesNo == 'y':
+            coins += 1
+            print('You received 1 coin, your total is now {}.'.format(coins))
+    return coins
+        
+
 
 #Bætir við 'or' ef á við
 def orr(direction):
@@ -41,36 +54,41 @@ def movement(x,y,direction):
         x-=1
         
     return (x,y)
- 
-xHnit = 1
-yHnit = 1
+
+def main(): 
+    xHnit = 1
+    yHnit = 1
+    coins = 0
 
 
-while not (xHnit == 3 and yHnit == 1):
-    travel = ""
-    check_location = location(xHnit,yHnit)
-    #if setningar sem skila mögulegum áttum
-    if "n" in check_location:
-        travel = orr(travel)
-        travel += "(N)orth"
-    if "e" in check_location:
-        travel = orr(travel)
-        travel += "(E)ast"
-    if "s" in check_location:
-        travel = orr(travel)
-        travel += "(S)outh"
-    if "w" in check_location:
-        travel = orr(travel)
-        travel += "(W)est"
-   
-    print("You can travel:",travel+'.')
-    direction = input("Direction: ")
-    if direction in check_location:#Tékkar hvort það sé réttur innsláttur
-        (xHnit,yHnit) = movement(xHnit,yHnit,direction)
-    else:
-        print("Not a valid direction!")
+    while not (xHnit == 3 and yHnit == 1):
+        travel = ""
+        check_location = location(xHnit,yHnit)
+        #if setningar sem skila mögulegum áttum
+        if "n" in check_location:
+            travel = orr(travel)
+            travel += "(N)orth"
+        if "e" in check_location:
+            travel = orr(travel)
+            travel += "(E)ast"
+        if "s" in check_location:
+            travel = orr(travel)
+            travel += "(S)outh"
+        if "w" in check_location:
+            travel = orr(travel)
+            travel += "(W)est"
+    
+        print("You can travel:",travel+'.')
+        direction = input("Direction: ")
+        if direction in check_location:#Tékkar hvort það sé réttur innsláttur
+            (xHnit,yHnit) = movement(xHnit,yHnit,direction)
+            coins = lever(xHnit,yHnit,coins)
+        else:
+            print("Not a valid direction!")
 
-print("Victory!")
+    print("Victory! Total coins {}.".format(coins))
+
+main()
 
 # Bee Movie Script - Dialogue Transcript
 
