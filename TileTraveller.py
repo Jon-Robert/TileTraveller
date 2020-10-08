@@ -2,7 +2,7 @@
 # jonra20, rutt20, valurg20
 # Github: https://github.com/Jon-Robert/TileTraveller
 
-
+import random   
 
 #Fall sem tékkar á staðsetningu notanda eftir x & y hnitum og skilar mögulegum áttum
 def location(x,y): 
@@ -25,7 +25,9 @@ def location(x,y):
 
 def lever(x,y,coins):
     if y == 2 or (x == 2 and y == 3):
-        pullYesNo = input('Pull a lever (y/n): ')
+        #pullYesNo = input('Pull a lever (y/n): ')
+        pullYesNo = random.choice(["y", "n"])
+        print('Pull a lever (y/n): ',pullYesNo)
         pullYesNo.lower()
         if pullYesNo == 'y':
             coins += 1
@@ -59,7 +61,7 @@ def main():
     xHnit = 1
     yHnit = 1
     coins = 0
-
+    moves = 0
 
     while not (xHnit == 3 and yHnit == 1):
         travel = ""
@@ -79,17 +81,21 @@ def main():
             travel += "(W)est"
     
         print("You can travel:",travel+'.')
-        direction = input("Direction: ")
+        #direction = input("Direction: ")
+        direction = random.choice(["n", "e", "s", "w"])
+        print("Direction: ",direction)
         if direction in check_location:#Tékkar hvort það sé réttur innsláttur
             (xHnit,yHnit) = movement(xHnit,yHnit,direction)
             coins = lever(xHnit,yHnit,coins)
         else:
             print("Not a valid direction!")
-
-    print("Victory! Total coins {}.".format(coins))
+        moves+=1
+    print("Victory! Total coins {}. Moves {}.".format(coins,moves))
 
 #Main Program starts here!
-play = "y"   
+play = "y" 
+seed=int(input("Input seed: "))  
+random.seed(seed)
 while play != "n":      
     main()
     play = input("Play again (y/n): ")
